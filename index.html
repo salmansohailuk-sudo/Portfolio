@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Salman — DevOps Engineer & Cloud Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --ink:     #0e0c0a;
+  --paper:   #f5f0e8;
+  --amber:   #e8a020;
+  --rust:    #c0451a;
+  --cloud:   #1a3a5c;
+  --sage:    #2d5a3d;
+  --muted:   #7a7060;
+  --border:  #d8d0c0;
+  --surface: #ede8de;
+  --white:   #fdfbf7;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 3.5rem;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+.nav-brand span { color: var(--amber); font-style: italic; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding: 7rem 3.5rem 4rem; max-width: 1300px; margin: 0 auto;
+  align-items: center; gap: 4rem;
+}
+.hero-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+.eyebrow-line { width: 40px; height: 1px; background: var(--amber); }
+.eyebrow-text { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3.8rem, 5.5vw, 6.5rem); font-weight: 900; line-height: 0.92; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 1.8rem; }
+.hero h1 em { font-style: italic; color: var(--rust); }
+.hero-desc { font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 440px; margin-bottom: 2.5rem; }
+.hero-desc strong { color: var(--ink); font-weight: 500; }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 1.8rem; border-radius: 2px; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--rust); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,69,26,0.3); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); }
+
+/* Hero Right */
+.hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.hero-stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; transition: transform 0.3s; }
+.hero-stat-card:hover { transform: translateY(-4px); }
+.hero-stat-card.accent-amber { border-top: 3px solid var(--amber); }
+.hero-stat-card.accent-rust  { border-top: 3px solid var(--rust); }
+.hero-stat-card.accent-cloud { border-top: 3px solid var(--cloud); }
+.hero-stat-card.accent-sage  { border-top: 3px solid var(--sage); }
+.stat-big { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; line-height: 1; color: var(--ink); }
+.stat-big.amber { color: var(--amber); }
+.stat-big.rust  { color: var(--rust); }
+.stat-big.cloud { color: var(--cloud); }
+.stat-big.sage  { color: var(--sage); }
+.stat-sub { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+
+/* DIVIDER */
+.rule { max-width: 1300px; margin: 0 auto; padding: 0 3.5rem; }
+.rule hr { border: none; border-top: 1px solid var(--border); }
+
+/* DUAL ROLE BANNER */
+.dual-role { background: var(--ink); color: var(--paper); padding: 3.5rem; display: grid; grid-template-columns: 1fr 1px 1fr; gap: 3rem; align-items: center; }
+.dual-rule { background: rgba(255,255,255,0.12); }
+.dual-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 1rem; }
+.dual-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+.dual-desc { font-size: 0.9rem; line-height: 1.75; color: rgba(245,240,232,0.65); }
+.dual-list { list-style: none; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.dual-list li { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: rgba(245,240,232,0.5); padding-left: 1rem; position: relative; letter-spacing: 0.04em; }
+.dual-list li::before { content: '→'; position: absolute; left: 0; color: var(--amber); }
+
+/* SECTIONS */
+section { max-width: 1300px; margin: 0 auto; padding: 6rem 3.5rem; }
+.section-header { display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; }
+.section-num { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 900; color: var(--border); line-height: 1; font-style: italic; }
+.section-label-sm { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); display: block; margin-bottom: 0.3rem; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.5vw, 2.6rem); font-weight: 700; color: var(--ink); line-height: 1.1; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.skill-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; transition: all 0.3s; }
+.skill-card:hover { box-shadow: 0 12px 40px rgba(14,12,10,0.1); transform: translateY(-3px); }
+.skill-icon-wrap { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
+.bg-amber { background: rgba(232,160,32,0.12); }
+.bg-rust  { background: rgba(192,69,26,0.1); }
+.bg-cloud { background: rgba(26,58,92,0.1); }
+.bg-sage  { background: rgba(45,90,61,0.1); }
+.skill-name { font-weight: 500; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.6rem; }
+.skill-text { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+.pill-group { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.pill { font-family: 'DM Mono', monospace; font-size: 0.62rem; padding: 0.18rem 0.55rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; }
+.pill-amber { background: rgba(232,160,32,0.12); color: #a07010; border: 1px solid rgba(232,160,32,0.25); }
+.pill-rust  { background: rgba(192,69,26,0.1);  color: var(--rust); border: 1px solid rgba(192,69,26,0.2); }
+.pill-cloud { background: rgba(26,58,92,0.1);   color: var(--cloud); border: 1px solid rgba(26,58,92,0.2); }
+.pill-sage  { background: rgba(45,90,61,0.1);   color: var(--sage); border: 1px solid rgba(45,90,61,0.2); }
+.pill-ink   { background: rgba(14,12,10,0.06);  color: var(--ink); border: 1px solid rgba(14,12,10,0.12); }
+
+/* TRAINING */
+.courses-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start; }
+.courses-intro { font-size: 1rem; line-height: 1.8; color: var(--muted); position: sticky; top: 7rem; }
+.courses-intro strong { color: var(--ink); font-weight: 500; }
+.big-quote { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; font-style: italic; color: var(--ink); line-height: 1.35; margin-bottom: 1rem; border-left: 3px solid var(--amber); padding-left: 1.25rem; }
+.courses-list { display: flex; flex-direction: column; gap: 1rem; }
+.course-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem 1.75rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1.25rem; align-items: center; transition: all 0.25s; }
+.course-card:hover { border-color: var(--amber); box-shadow: 0 6px 24px rgba(14,12,10,0.08); }
+.course-level { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); }
+.course-name { font-weight: 500; font-size: 0.95rem; color: var(--ink); margin-bottom: 0.35rem; }
+.course-meta { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 0.06em; display: flex; gap: 1rem; flex-wrap: wrap; }
+.course-badge { font-family: 'DM Mono', monospace; font-size: 0.62rem; padding: 0.3rem 0.7rem; border-radius: 20px; white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase; }
+.badge-live   { background: rgba(45,90,61,0.1);   color: var(--sage); border: 1px solid rgba(45,90,61,0.2); }
+.badge-online { background: rgba(26,58,92,0.1);   color: var(--cloud); border: 1px solid rgba(26,58,92,0.2); }
+.badge-both   { background: rgba(232,160,32,0.1); color: #a07010; border: 1px solid rgba(232,160,32,0.25); }
+
+/* PROJECTS */
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.project-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1.75rem; display: flex; flex-direction: column; gap: 0.75rem; transition: all 0.3s; position: relative; overflow: hidden; }
+.project-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--amber); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.project-card:hover::after { transform: scaleX(1); }
+.project-card:hover { box-shadow: 0 16px 48px rgba(14,12,10,0.1); transform: translateY(-4px); }
+.project-idx { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; font-style: italic; color: var(--border); line-height: 1; }
+.project-name { font-weight: 500; font-size: 1rem; color: var(--ink); line-height: 1.3; }
+.project-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.7; flex: 1; }
+.project-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.project-links { display: flex; gap: 1.25rem; padding-top: 0.75rem; border-top: 1px solid var(--border); margin-top: 0.5rem; }
+.project-link { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s; }
+.project-link:hover { color: var(--rust); }
+
+/* EXPERIENCE */
+.exp-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; }
+.exp-item { display: grid; grid-template-columns: 100px 1fr; gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+.exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.exp-year { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--amber); line-height: 1; padding-top: 0.2rem; }
+.exp-role { font-weight: 500; font-size: 1.05rem; color: var(--ink); margin-bottom: 0.25rem; }
+.exp-company { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.exp-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+/* CERTS */
+.certs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.cert-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 1.5rem 1.25rem; text-align: center; transition: all 0.3s; }
+.cert-card:hover { border-color: var(--amber); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(14,12,10,0.08); }
+.cert-icon { font-size: 2.25rem; display: block; margin-bottom: 0.75rem; }
+.cert-name { font-weight: 500; font-size: 0.83rem; color: var(--ink); line-height: 1.35; margin-bottom: 0.35rem; }
+.cert-issuer { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--amber); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* TESTIMONIALS */
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.testi-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 2rem; }
+.testi-quote { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 0; color: var(--amber); opacity: 0.4; margin-bottom: 0.5rem; display: block; }
+.testi-text { font-size: 0.88rem; line-height: 1.75; color: var(--muted); font-style: italic; margin-bottom: 1.25rem; }
+.testi-author { font-weight: 500; font-size: 0.85rem; color: var(--ink); }
+.testi-role-txt { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.15rem; }
+
+/* CONTACT */
+.contact-wrap { background: var(--ink); padding: 6rem 3.5rem; }
+.contact-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.contact-left .section-label-sm { color: var(--amber); }
+.contact-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 700; color: var(--paper); line-height: 1.1; margin-top: 0.5rem; margin-bottom: 1.25rem; }
+.contact-title em { font-style: italic; color: var(--amber); }
+.contact-text { font-size: 0.95rem; line-height: 1.8; color: rgba(245,240,232,0.55); margin-bottom: 2rem; }
+.contact-right { display: flex; flex-direction: column; gap: 1rem; }
+.contact-link { display: flex; align-items: center; gap: 1.25rem; padding: 1.25rem 1.5rem; background: rgba(245,240,232,0.05); border: 1px solid rgba(245,240,232,0.1); border-radius: 4px; text-decoration: none; transition: all 0.25s; color: inherit; }
+.contact-link:hover { background: rgba(232,160,32,0.08); border-color: rgba(232,160,32,0.3); transform: translateX(6px); }
+.cl-icon { width: 42px; height: 42px; background: rgba(232,160,32,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.cl-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,240,232,0.4); display: block; }
+.cl-val { font-size: 0.9rem; font-weight: 500; color: var(--paper); display: block; margin-top: 0.1rem; }
+
+/* FOOTER */
+footer { background: var(--ink); border-top: 1px solid rgba(245,240,232,0.08); padding: 1.75rem 3.5rem; display: flex; justify-content: space-between; align-items: center; }
+.footer-left { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: rgba(245,240,232,0.3); }
+.footer-status { display: flex; align-items: center; gap: 0.6rem; font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--sage); letter-spacing: 0.08em; }
+.status-pulse { width: 6px; height: 6px; background: var(--sage); border-radius: 50%; animation: blink 2s infinite; }
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.anim { opacity: 0; animation: slideUp 0.7s ease forwards; }
+.d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.25s; } .d3 { animation-delay: 0.4s; } .d4 { animation-delay: 0.55s; } .d5 { animation-delay: 0.7s; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.75rem 3rem; }
+  .hero-right { display: none; }
+  .skills-grid, .projects-grid, .certs-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+  .courses-layout, .exp-grid, .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .dual-role { grid-template-columns: 1fr; } .dual-rule { display: none; }
+  nav { padding: 1rem 1.5rem; } section { padding: 4rem 1.75rem; }
+  .contact-wrap, footer, .rule { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .contact-wrap { padding-top: 4rem; padding-bottom: 4rem; }
+}
+@media (max-width: 600px) {
+  .skills-grid, .projects-grid, .certs-grid, .testi-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Salman<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#training">Training</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1300px;margin:0 auto;">
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow anim d1">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">DevOps Engineer · Cloud Trainer</span>
+    </div>
+    <h1 class="anim d2">Building<br/><em>clouds.</em><br/>Teaching<br/><em>people.</em></h1>
+    <p class="hero-desc anim d3">
+      Hi, I'm <strong>Salman</strong> — a <strong>Multi-Cloud DevOps Engineer & Trainer</strong>
+      with <strong>10 years</strong> of hands-on experience and <strong>30+ projects</strong>
+      across AWS, Azure & GCP. I build infrastructure that scales — and teach teams how to own it.
+    </p>
+    <div class="hero-ctas anim d4">
+      <a href="#projects" class="btn btn-primary">↗ View Projects</a>
+      <a href="#training" class="btn btn-outline">🎓 My Courses</a>
+    </div>
+  </div>
+  <div class="hero-right anim d5">
+    <div class="hero-stat-card accent-amber"><div class="stat-big amber">10+</div><div class="stat-sub">Years Experience</div></div>
+    <div class="hero-stat-card accent-rust"><div class="stat-big rust">30+</div><div class="stat-sub">Projects Delivered</div></div>
+    <div class="hero-stat-card accent-cloud"><div class="stat-big cloud">3</div><div class="stat-sub">Cloud Platforms</div></div>
+    <div class="hero-stat-card accent-sage"><div class="stat-big sage">500+</div><div class="stat-sub">Engineers Trained</div></div>
+  </div>
+</div>
+</div>
+
+<!-- DUAL ROLE BANNER -->
+<div class="dual-role">
+  <div>
+    <div class="dual-label">// The Engineer</div>
+    <div class="dual-title">I architect infrastructure<br/>that doesn't break at 3am.</div>
+    <p class="dual-desc">From zero-downtime Kubernetes migrations to multi-cloud cost optimisation, I've shipped resilient systems for startups and enterprises alike.</p>
+    <ul class="dual-list">
+      <li>Multi-cloud architecture (AWS, Azure, GCP)</li>
+      <li>Infrastructure as Code &amp; GitOps</li>
+      <li>CI/CD pipelines &amp; Platform Engineering</li>
+      <li>SRE, observability &amp; incident response</li>
+    </ul>
+  </div>
+  <div class="dual-rule"></div>
+  <div>
+    <div class="dual-label">// The Trainer</div>
+    <div class="dual-title">I turn beginners into<br/>cloud-confident engineers.</div>
+    <p class="dual-desc">I've designed and delivered training programmes for teams at all levels — DevOps fundamentals through to advanced Kubernetes and cloud architecture.</p>
+    <ul class="dual-list">
+      <li>Corporate training &amp; bootcamp delivery</li>
+      <li>Hands-on lab design &amp; curriculum writing</li>
+      <li>Certification prep (AWS, Azure, CKA)</li>
+      <li>1-on-1 mentoring &amp; career coaching</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div><span class="section-label-sm">Technical Expertise</span><h2 class="section-title">What I Work With</h2></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon-wrap bg-amber">☁️</div>
+      <div class="skill-name">Cloud Platforms</div>
+      <p class="skill-text">Deep hands-on expertise across all three major hyperscalers — from well-architected reviews to cost-optimised production deployments.</p>
+      <div class="pill-group"><span class="pill pill-amber">AWS</span><span class="pill pill-amber">Azure</span><span class="pill pill-amber">GCP</span><span class="pill pill-amber">Multi-Cloud</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap bg-rust">🏗️</div>
+      <div class="skill-name">Infrastructure as Code</div>
+      <p class="skill-text">Defining repeatable, version-controlled infrastructure for teams at scale. Everything in code, nothing clicked in the console.</p>
+      <div class="pill-group"><span class="pill pill-rust">Terraform</span><span class="pill pill-rust">Pulumi</span><span class="pill pill-rust">Ansible</span><span class="pill pill-rust">CloudFormation</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap bg-cloud">🚀</div>
+      <div class="skill-name">CI/CD &amp; Automation</div>
+      <p class="skill-text">End-to-end pipeline design for fast, reliable software delivery. GitOps workflows, automated testing gates, and progressive delivery.</p>
+      <div class="pill-group"><span class="pill pill-cloud">GitHub Actions</span><span class="pill pill-cloud">Jenkins</span><span class="pill pill-cloud">ArgoCD</span><span class="pill pill-cloud">Tekton</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap bg-sage">🐳</div>
+      <div class="skill-name">Containers &amp; K8s</div>
+      <p class="skill-text">Container strategy, Kubernetes cluster management, service mesh, and operator patterns for production-grade microservices.</p>
+      <div class="pill-group"><span class="pill pill-sage">Kubernetes</span><span class="pill pill-sage">Docker</span><span class="pill pill-sage">Helm</span><span class="pill pill-sage">Istio</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap bg-amber">📊</div>
+      <div class="skill-name">Observability &amp; SRE</div>
+      <p class="skill-text">Full-stack monitoring, alerting, and incident response. Building the culture and tooling for high-availability operations.</p>
+      <div class="pill-group"><span class="pill pill-amber">Prometheus</span><span class="pill pill-amber">Grafana</span><span class="pill pill-amber">Datadog</span><span class="pill pill-amber">ELK Stack</span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon-wrap bg-rust">🔐</div>
+      <div class="skill-name">DevSecOps</div>
+      <p class="skill-text">Security baked into every pipeline stage. Secrets management, SAST/DAST automation, and cloud security posture management.</p>
+      <div class="pill-group"><span class="pill pill-rust">Vault</span><span class="pill pill-rust">OPA</span><span class="pill pill-rust">Snyk</span><span class="pill pill-rust">CSPM</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><hr/></div>
+
+<!-- TRAINING -->
+<section id="training">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div><span class="section-label-sm">Teaching &amp; Training</span><h2 class="section-title">Courses I Deliver</h2></div>
+  </div>
+  <div class="courses-layout">
+    <div class="courses-intro">
+      <div class="big-quote">"The best engineers are the ones who can explain it clearly."</div>
+      I design and deliver <strong>hands-on training</strong> that bridges the gap between theory and production reality. Every course is built around real-world scenarios, not slides.
+      <br/><br/>
+      Available for <strong>corporate training</strong>, <strong>bootcamps</strong>, <strong>conference workshops</strong>, and <strong>private mentoring</strong>.
+    </div>
+    <div class="courses-list">
+      <div class="course-card">
+        <div class="course-level">Beginner</div>
+        <div><div class="course-name">DevOps Fundamentals Bootcamp</div><div class="course-meta"><span>⏱ 3 Days</span><span>👥 Up to 20 students</span><span>AWS · Linux · Git · Docker</span></div></div>
+        <span class="course-badge badge-both">Live &amp; Online</span>
+      </div>
+      <div class="course-card">
+        <div class="course-level">Intermediate</div>
+        <div><div class="course-name">Kubernetes in Production</div><div class="course-meta"><span>⏱ 2 Days</span><span>👥 Up to 15 students</span><span>K8s · Helm · ArgoCD · Monitoring</span></div></div>
+        <span class="course-badge badge-live">Live / On-site</span>
+      </div>
+      <div class="course-card">
+        <div class="course-level">Advanced</div>
+        <div><div class="course-name">Multi-Cloud Architecture &amp; Design</div><div class="course-meta"><span>⏱ 4 Days</span><span>👥 Up to 12 students</span><span>AWS · Azure · GCP · Terraform</span></div></div>
+        <span class="course-badge badge-both">Live &amp; Online</span>
+      </div>
+      <div class="course-card">
+        <div class="course-level">Cert Prep</div>
+        <div><div class="course-name">AWS Solutions Architect Exam Prep</div><div class="course-meta"><span>⏱ 5 Days</span><span>👥 Up to 25 students</span><span>AWS SAA-C03 · Practice Exams</span></div></div>
+        <span class="course-badge badge-online">Online</span>
+      </div>
+      <div class="course-card">
+        <div class="course-level">Workshop</div>
+        <div><div class="course-name">Terraform &amp; IaC Masterclass</div><div class="course-meta"><span>⏱ 1 Day</span><span>👥 Up to 20 students</span><span>Terraform · Modules · CI/CD</span></div></div>
+        <span class="course-badge badge-both">Live &amp; Online</span>
+      </div>
+      <div class="course-card">
+        <div class="course-level">Workshop</div>
+        <div><div class="course-name">DevSecOps: Security in Pipelines</div><div class="course-meta"><span>⏱ 1 Day</span><span>👥 Up to 20 students</span><span>Vault · Snyk · OPA · SAST</span></div></div>
+        <span class="course-badge badge-live">Live / On-site</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><hr/></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div><span class="section-label-sm">Selected Work</span><h2 class="section-title">Featured Projects</h2></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-idx">01</div>
+      <div class="project-name">Multi-Cloud Kubernetes Platform</div>
+      <p class="project-desc">Unified K8s platform spanning AWS EKS, Azure AKS &amp; GCP GKE — centralised GitOps, federated monitoring, 99.99% uptime SLA for 200+ microservices.</p>
+      <div class="project-stack"><span class="pill pill-sage">Kubernetes</span><span class="pill pill-sage">ArgoCD</span><span class="pill pill-amber">Terraform</span><span class="pill pill-ink">Prometheus</span></div>
+      <div class="project-links"><a href="#" class="project-link">⌥ GitHub</a><a href="#" class="project-link">↗ Case Study</a></div>
+    </div>
+    <div class="project-card">
+      <div class="project-idx">02</div>
+      <div class="project-name">Zero-Trust DevSecOps Pipeline</div>
+      <p class="project-desc">Automated vulnerability scanning, SAST/DAST gates, Vault secrets rotation &amp; OPA policy enforcement — reducing critical CVEs by 87% in 90 days.</p>
+      <div class="project-stack"><span class="pill pill-rust">Vault</span><span class="pill pill-rust">OPA</span><span class="pill pill-rust">Snyk</span><span class="pill pill-cloud">GitHub Actions</span></div>
+      <div class="project-links"><a href="#" class="project-link">⌥ GitHub</a><a href="#" class="project-link">↗ Case Study</a></div>
+    </div>
+    <div class="project-card">
+      <div class="project-idx">03</div>
+      <div class="project-name">Serverless Data Ingestion Platform</div>
+      <p class="project-desc">AWS-native serverless pipeline handling 2TB/day — Lambda, Kinesis, Glue &amp; Redshift with cost optimisation saving $40K/year.</p>
+      <div class="project-stack"><span class="pill pill-amber">Lambda</span><span class="pill pill-amber">Kinesis</span><span class="pill pill-amber">Glue</span><span class="pill pill-amber">Terraform</span></div>
+      <div class="project-links"><a href="#" class="project-link">⌥ GitHub</a><a href="#" class="project-link">↗ Case Study</a></div>
+    </div>
+    <div class="project-card">
+      <div class="project-idx">04</div>
+      <div class="project-name">Internal Developer Platform</div>
+      <p class="project-desc">Self-service infra provisioning with golden path templates &amp; automated compliance — env spin-up from 2 weeks to 15 minutes.</p>
+      <div class="project-stack"><span class="pill pill-cloud">Backstage</span><span class="pill pill-cloud">Crossplane</span><span class="pill pill-sage">Helm</span><span class="pill pill-ink">Pulumi</span></div>
+      <div class="project-links"><a href="#" class="project-link">⌥ GitHub</a><a href="#" class="project-link">↗ Case Study</a></div>
+    </div>
+    <div class="project-card">
+      <div class="project-idx">05</div>
+      <div class="project-name">Disaster Recovery Automation</div>
+      <p class="project-desc">Cross-region DR with RTO &lt;15 min and RPO &lt;5 min — automated failover, chaos engineering validation, and full runbook automation.</p>
+      <div class="project-stack"><span class="pill pill-rust">Chaos Eng.</span><span class="pill pill-amber">Terraform</span><span class="pill pill-amber">Route53</span><span class="pill pill-ink">PagerDuty</span></div>
+      <div class="project-links"><a href="#" class="project-link">⌥ GitHub</a><a href="#" class="project-link">↗ Case Study</a></div>
+    </div>
+    <div class="project-card">
+      <div class="project-idx">06</div>
+      <div class="project-name">FinOps Cost Intelligence Dashboard</div>
+      <p class="project-desc">Real-time cloud cost visibility across all three clouds with anomaly detection &amp; chargeback automation — 35% cost reduction achieved.</p>
+      <div class="project-stack"><span class="pill pill-ink">Grafana</span><span class="pill pill-ink">Python</span><span class="pill pill-amber">Cost Explorer</span><span class="pill pill-cloud">BigQuery</span></div>
+      <div class="project-links"><a href="#" class="project-link">⌥ GitHub</a><a href="#" class="project-link">↗ Case Study</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><hr/></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div><span class="section-label-sm">Career Journey</span><h2 class="section-title">Experience</h2></div>
+  </div>
+  <div class="exp-grid">
+    <div></div>
+    <div>
+      <div class="exp-item">
+        <div class="exp-year">2022<br/>–Now</div>
+        <div><div class="exp-role">Principal DevOps Architect &amp; Lead Trainer</div><div class="exp-company">Enterprise Tech Co.</div><p class="exp-desc">Leading multi-cloud strategy for a 500-person engineering org. Owning platform engineering, SRE, and cloud cost optimisation. Running internal training programmes onboarding 80+ engineers per year to cloud-native practices.</p></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2019<br/>–2022</div>
+        <div><div class="exp-role">Senior DevOps Engineer &amp; Corporate Trainer</div><div class="exp-company">Scale-up Fintech + Training Freelance</div><p class="exp-desc">Built cloud infrastructure for a Series B fintech serving 2M+ users. Concurrently delivering corporate DevOps and Kubernetes training for 15+ enterprise clients.</p></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2017<br/>–2019</div>
+        <div><div class="exp-role">DevOps Engineer</div><div class="exp-company">Digital Agency</div><p class="exp-desc">Cloud migrations and automation for 10+ enterprise clients. Began developing internal training materials that later became public courses.</p></div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-year">2015<br/>–2017</div>
+        <div><div class="exp-role">Systems &amp; Cloud Engineer</div><div class="exp-company">MSP / Managed Services</div><p class="exp-desc">Foundation years in Linux/Windows infrastructure, networking, and early Docker/cloud deployments. Started mentoring junior engineers — where the trainer identity began.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><hr/></div>
+
+<!-- CERTS -->
+<section id="certs">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div><span class="section-label-sm">Credentials</span><h2 class="section-title">Certifications</h2></div>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card"><span class="cert-icon">🟠</span><div class="cert-name">AWS Solutions Architect Professional</div><div class="cert-issuer">Amazon Web Services</div></div>
+    <div class="cert-card"><span class="cert-icon">🔵</span><div class="cert-name">Azure DevOps Engineer Expert</div><div class="cert-issuer">Microsoft</div></div>
+    <div class="cert-card"><span class="cert-icon">🟢</span><div class="cert-name">GCP Professional Cloud Architect</div><div class="cert-issuer">Google Cloud</div></div>
+    <div class="cert-card"><span class="cert-icon">⎈</span><div class="cert-name">CKA — Certified Kubernetes Admin</div><div class="cert-issuer">CNCF</div></div>
+    <div class="cert-card"><span class="cert-icon">🏛️</span><div class="cert-name">HashiCorp Terraform Associate</div><div class="cert-issuer">HashiCorp</div></div>
+    <div class="cert-card"><span class="cert-icon">🔐</span><div class="cert-name">Certified DevSecOps Professional</div><div class="cert-issuer">Practical DevSecOps</div></div>
+    <div class="cert-card"><span class="cert-icon">📚</span><div class="cert-name">AWS Authorised Instructor</div><div class="cert-issuer">Amazon Web Services</div></div>
+    <div class="cert-card"><span class="cert-icon">🎓</span><div class="cert-name">CKAD — Kubernetes App Dev</div><div class="cert-issuer">CNCF</div></div>
+  </div>
+</section>
+
+<div class="rule"><hr/></div>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div><span class="section-label-sm">What People Say</span><h2 class="section-title">Testimonials</h2></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">Salman's Kubernetes training was the most practical I've attended. We went from zero to running production workloads in two days. Incredible depth and real patience for every question.</p>
+      <div class="testi-author">Ahmed R.</div><div class="testi-role-txt">Senior Engineer, Fintech Co.</div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">He doesn't just know the tools — he understands why they work. The multi-cloud project Salman led cut our infra costs by 40% and halved our incident rate.</p>
+      <div class="testi-author">Priya M.</div><div class="testi-role-txt">CTO, Scale-up SaaS</div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <p class="testi-text">I came in intimidated by Terraform. Salman broke every concept into something I could actually build with. Passed my AWS cert the following month.</p>
+      <div class="testi-author">James T.</div><div class="testi-role-txt">DevOps Engineer (Bootcamp Graduate)</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <span class="section-label-sm">// Let's Talk</span>
+      <h2 class="contact-title">Open for<br/><em>opportunities</em><br/>&amp; training enquiries.</h2>
+      <p class="contact-text">Whether you need a cloud architect, a training partner for your team, or just want to talk DevOps — I'd love to hear from you.</p>
+      <div class="hero-ctas">
+        <a href="mailto:salman@email.com" class="btn btn-primary">✉ Send a Message</a>
+      </div>
+    </div>
+    <div class="contact-right">
+      <a href="https://github.com/" target="_blank" class="contact-link"><div class="cl-icon">⌥</div><div><span class="cl-label">GitHub</span><span class="cl-val">github.com/salman</span></div></a>
+      <a href="https://linkedin.com/" target="_blank" class="contact-link"><div class="cl-icon">in</div><div><span class="cl-label">LinkedIn</span><span class="cl-val">linkedin.com/in/salman</span></div></a>
+      <a href="mailto:salman@email.com" class="contact-link"><div class="cl-icon">✉</div><div><span class="cl-label">Email</span><span class="cl-val">salman@email.com</span></div></a>
+      <a href="https://twitter.com/" target="_blank" class="contact-link"><div class="cl-icon">𝕏</div><div><span class="cl-label">Twitter / X</span><span class="cl-val">@salman_devops</span></div></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">© 2025 Salman · DevOps Engineer &amp; Cloud Trainer</div>
+  <div class="footer-status"><div class="status-pulse"></div>Available for work &amp; training</div>
+</footer>
+
+</body>
+</html>
